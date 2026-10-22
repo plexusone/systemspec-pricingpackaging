@@ -168,11 +168,11 @@ Lint warnings are reviewable and do not reject:
 
 | Code | Warning |
 |---|---|
-| W001 | There is no free plan, or the default plan sets an unlimited limit without `fairUse`. |
+| W001 | The default plan sets an unlimited limit without `fairUse`. |
 | W002 | A plan in a higher tier is cheaper than a plan in a lower tier at the same interval. |
 | W003 | A feature or limit is declared and never used by a plan. |
 | W004 | A tier has plans but no grants. |
-| W005 | A ladder's level names read as independent options, or a switch is set at only one tier and never changes. |
+| W005 | A ladder's level names read as a list of independent options (they contain a comma, a slash, or the words "or" or "and"). |
 | W006 | A plan has an annual price that is not less than twelve times the monthly price. |
 
 ## Resolution

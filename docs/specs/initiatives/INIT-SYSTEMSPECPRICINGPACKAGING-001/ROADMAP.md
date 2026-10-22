@@ -25,13 +25,13 @@ prices, coupons, regional pricing, and a command-line tool.
 
 **Theme:** The types exist, the schema is generated from them, and a spec that grants more than it states is rejected.
 
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-004` Module, package layout and the Go types
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-004` Module, package layout and the Go types
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-003`
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-005` JSON Schema generated from the types and linted with the family's tool
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-005` JSON Schema generated from the types and linted with the family's tool
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-004`
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-006` Loader and validation: every error in the TRD, each with a test
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-006` Loader and validation: every error in the TRD, each with a test
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-004`
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-007` Lint warnings: no free tier, unused features and limits, tiers without grants, unlimited free limits without fair-use
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-007` Lint warnings: no free tier, unused features and limits, tiers without grants, unlimited free limits without fair-use
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-006`
 
 ## Phase 3 — Helpers and projections
