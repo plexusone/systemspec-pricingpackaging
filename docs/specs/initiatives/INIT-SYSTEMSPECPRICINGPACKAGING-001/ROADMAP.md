@@ -58,4 +58,5 @@ prices, coupons, regional pricing, and a command-line tool.
 - [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-014` A billing library's trial: pricing view, limit check and provider plan built from an example
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-012`
 - [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-015` Review; fix findings; record known limitations; v0.1.0 release with changelog, notes and tag after CI
-  - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-013`, `RMI-SYSTEMSPECPRICINGPACKAGING-014`
+  - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-013`
+  - Note: released before the production trial (`RMI-SYSTEMSPECPRICINGPACKAGING-014`), which continues in the billing library that consumes it; the release notes say so

@@ -38,6 +38,10 @@ Helpers (plan, feature and limit checks) and projections (a pricing view, an
 entitlement map, a diff) are planned; see
 [the roadmap](docs/specs/initiatives/INIT-SYSTEMSPECPRICINGPACKAGING-001/ROADMAP.md).
 
+## Releases
+
+[v0.1.0](docs/releases/v0.1.0.md) · [Changelog](CHANGELOG.md)
+
 ## Regenerating the schema
 
 ```sh

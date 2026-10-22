@@ -1,0 +1,132 @@
+{
+  "irVersion": "1.0",
+  "project": "systemspec-pricingpackaging",
+  "repository": "https://github.com/plexusone/systemspec-pricingpackaging",
+  "versioning": "semver",
+  "commitConvention": "conventional",
+  "maintainers": [
+    "plexusone",
+    "johncwang@gmail.com"
+  ],
+  "releases": [
+    {
+      "version": "v0.1.0",
+      "date": "2026-10-22",
+      "highlights": [
+        {
+          "description": "A Go-first, machine-readable description of a product's pricing and packaging: tiers, plans with prices, features (switches and ordered levels), limits (with periods and fair use), one-time products, a marketplace fee, and the application access each tier grants",
+          "commit": "6a57f7b"
+        },
+        {
+          "description": "Safe by construction: an unknown plan is the default plan, an unset feature is off, an unset limit is zero, and unlimited is its own field",
+          "commit": "deae5dc"
+        },
+        {
+          "description": "Validation with stable error codes (E001 to E013) that reports every error at once, and lint warnings (W001 to W006) for review",
+          "commit": "1bb1795"
+        },
+        {
+          "description": "Projections computed from the spec: a pricing view, a tier-to-entitlement map, and a diff that marks what affects existing customers",
+          "commit": "8f39a8e"
+        }
+      ],
+      "added": [
+        {
+          "description": "`pricingspec` types: `Spec`, `Tier`, `Feature`, `Limit`, `Plan`, `Price`, `FeatureValue`, `LimitValue`, `Product`, `Marketplace` and `TierGrant`, following the static-type profile with no schema composition",
+          "commit": "6a57f7b",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-004"
+          ]
+        },
+        {
+          "description": "`schema/pricing.schema.json` generated from the Go types and embedded, with a test that fails when it is out of date",
+          "commit": "976d42f",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-005"
+          ]
+        },
+        {
+          "description": "`Load` and `Parse` decode strictly, reject unknown fields and unknown format versions, and return a `*ValidationError` listing every error rule broken (E001 to E013) with a path",
+          "commit": "1bb1795",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-006"
+          ]
+        },
+        {
+          "description": "`Spec.Lint` reports the review warnings W001 to W006: unlimited defaults without fair use, a higher tier priced under a lower one, unused features and limits, tiers without grants, level names that read as options, and annual prices that are no saving",
+          "commit": "811bdb2",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-007"
+          ]
+        },
+        {
+          "description": "Helpers `PlanOrDefault`, `Has`, `Level`, `AtLeast`, `Allowance`, `Check` (allowed, warn or refuse), `GrantsFor` and `TierRank`; an unknown identifier never grants more",
+          "commit": "deae5dc",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-008"
+          ]
+        },
+        {
+          "description": "`PricingView` orders plans by tier and lines features and limits up across them as data for a page; `EntitlementMap` lists each tier's grants in rank order",
+          "commit": "8f39a8e",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-009",
+            "RMI-SYSTEMSPECPRICINGPACKAGING-010"
+          ]
+        },
+        {
+          "description": "`Diff` compares two specs in a stable order and marks price increases, lowered allowances, removed features, lowered levels, removed grants, higher fees and removed plans as affecting existing customers",
+          "commit": "8ceb1d5",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-011"
+          ]
+        },
+        {
+          "description": "Examples of a subscription tool and a marketplace, both invented, kept valid and free of warnings by tests",
+          "commit": "7d78714",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-012"
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "description": "`SPEC.md` is the normative description of the model, the rule codes, resolution, projections and the mapping from a tier to account entitlements",
+          "commit": "0b1d170",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-003"
+          ]
+        },
+        {
+          "description": "The fit of the model to three product shapes is recorded, with the changes it required",
+          "commit": "4201e64",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-001"
+          ]
+        },
+        {
+          "description": "A user guide covers concepts, writing a spec and using a spec, built as an MkDocs site",
+          "commit": "07ae1ae",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-013"
+          ]
+        }
+      ],
+      "tests": [
+        {
+          "description": "A test for every error and warning code, the loader's rejections, the helpers, golden files for the projections and the diff, and schema validation of the examples",
+          "commit": "da640d5",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-006"
+          ]
+        }
+      ],
+      "infrastructure": [
+        {
+          "description": "Module, license, lint configuration and CI workflows",
+          "commit": "ea05786"
+        }
+      ]
+    }
+  ]
+}

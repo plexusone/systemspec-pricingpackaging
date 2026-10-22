@@ -9,3 +9,7 @@ nav:
       - Concepts: guides/index.md
       - Writing a spec: guides/writing-a-spec.md
       - Using a spec: guides/using-a-spec.md
+  - Releases:
+      - releases/index.md
+      - v0.1.0: releases/v0.1.0.md
+      - Changelog: releases/changelog.md
