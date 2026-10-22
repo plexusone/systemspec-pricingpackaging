@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 	"testing"
 
@@ -46,6 +47,23 @@ func TestExampleValidatesAgainstTheSchema(t *testing.T) {
 	}
 	if err := validate(t, compile(t), data); err != nil {
 		t.Fatalf("testdata/valid.json: %v", err)
+	}
+}
+
+func TestExamplesValidateAgainstTheSchema(t *testing.T) {
+	files, err := filepath.Glob("../examples/*.json")
+	if err != nil || len(files) < 2 {
+		t.Fatalf("examples: %v (%d files)", err, len(files))
+	}
+	sch := compile(t)
+	for _, f := range files {
+		data, err := os.ReadFile(f)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := validate(t, sch, data); err != nil {
+			t.Errorf("%s: %v", f, err)
+		}
 	}
 }
 
