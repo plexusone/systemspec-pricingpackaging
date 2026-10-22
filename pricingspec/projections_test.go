@@ -8,6 +8,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/grokify/oscompat/testutil"
+
 	"github.com/plexusone/systemspec-pricingpackaging/pricingspec"
 )
 
@@ -20,23 +22,7 @@ func golden(t *testing.T, name string, v any) {
 		t.Fatal(err)
 	}
 	got = append(got, '\n')
-	path := filepath.Join("..", "testdata", "golden", name)
-	if *update {
-		if err := os.MkdirAll(filepath.Dir(path), 0o750); err != nil {
-			t.Fatal(err)
-		}
-		if err := os.WriteFile(path, got, 0o600); err != nil {
-			t.Fatal(err)
-		}
-		return
-	}
-	want, err := os.ReadFile(path)
-	if err != nil {
-		t.Fatalf("%v (run go test ./pricingspec -update)", err)
-	}
-	if string(want) != string(got) {
-		t.Fatalf("%s differs from the golden file; run go test ./pricingspec -update and review the diff\n%s", name, got)
-	}
+	testutil.AssertGolden(t, filepath.Join("..", "testdata", "golden", name), got, *update)
 }
 
 func load(t *testing.T, name string) *pricingspec.Spec {

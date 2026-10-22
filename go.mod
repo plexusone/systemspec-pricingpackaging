@@ -3,6 +3,7 @@ module github.com/plexusone/systemspec-pricingpackaging
 go 1.26
 
 require (
+	github.com/grokify/oscompat v0.9.0
 	github.com/invopop/jsonschema v0.14.0
 	github.com/santhosh-tekuri/jsonschema/v6 v6.0.3
 )

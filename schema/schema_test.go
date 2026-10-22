@@ -9,6 +9,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/grokify/oscompat/fs"
+	"github.com/grokify/oscompat/testutil"
 	jsonschema "github.com/santhosh-tekuri/jsonschema/v6"
 
 	"github.com/plexusone/systemspec-pricingpackaging/schema"
@@ -85,23 +87,16 @@ func TestSchemaRejectsWhatTheTypesReject(t *testing.T) {
 }
 
 func TestSchemaIsCurrent(t *testing.T) {
-	cmd := exec.Command("go", "run", "gen/main.go")
-	cmd.Dir = t.TempDir()
-	// Generate into a temp dir, then compare with the embedded copy.
-	src, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
+	// Generate into a temp dir, then compare with the embedded copy. The
+	// generator runs from the module so its imports resolve.
+	out := t.TempDir()
+	cmd := exec.Command("go", "run", filepath.Join("schema", "gen", "main.go"), out) //nolint:gosec // fixed generator path; out is this test's temp dir
+	cmd.Dir = ".."
+	if b, err := cmd.CombinedOutput(); err != nil {
+		t.Fatalf("run the generator: %v\n%s", err, b)
 	}
-	cmd.Args = []string{"go", "run", src + "/gen/main.go"}
-	cmd.Dir = t.TempDir()
-	if out, err := cmd.CombinedOutput(); err != nil {
-		t.Skipf("cannot run the generator here: %v\n%s", err, out)
-	}
-	got, err := os.ReadFile(cmd.Dir + "/pricing.schema.json")
-	if err != nil {
-		t.Fatal(err)
-	}
-	if !bytes.Equal(got, schema.SpecJSON) {
+	got := testutil.ReadFileLF(t, filepath.Join(out, "pricing.schema.json"))
+	if !bytes.Equal(got, fs.NormalizeLineEndingsBytes(schema.SpecJSON)) {
 		t.Fatal("schema/pricing.schema.json is out of date; run go generate ./schema/...")
 	}
 	var v any
