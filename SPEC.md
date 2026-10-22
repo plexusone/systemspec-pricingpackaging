@@ -178,20 +178,25 @@ Lint warnings are reviewable and do not reject:
 ## Resolution
 
 For an identifier that is not in the Spec, every function resolves to the
-safest answer and never fails.
+safest answer and never fails. Each takes the account's plan ID and resolves it
+with `PlanOrDefault` first.
 
 - `PlanOrDefault(id)`: the plan, or the default plan.
-- `Has(feature)`: true for a switch that is enabled; true for a ladder set to any
-  level.
-- `AtLeast(feature, level)`: true when the plan's level is at or above `level`
-  in the feature's order. False for an unset ladder, an unknown feature or an
-  unknown level.
-- `Check(limit, after)`: `after` is the usage **after** the action being
+- `Has(plan, feature)`: true for a switch that is enabled; true for a ladder set
+  to any level.
+- `Level(plan, feature)`: the level a ladder is set to, or empty.
+- `AtLeast(plan, feature, level)`: true when the plan's level is at or above
+  `level` in the feature's order. False for an unset ladder, a switch, an
+  unknown feature or an unknown level.
+- `Allowance(plan, limit)`: the maximum, and whether it is unlimited or fair
+  use. A limit the plan does not set has a maximum of zero.
+- `Check(plan, limit, after)`: `after` is the usage **after** the action being
   checked. `Allowed` when the limit is `unlimited`, or `after <= max`. Over the
-  maximum, `Warn` when `fairUse` and otherwise `Refuse`. A limit the plan does
-  not set has a maximum of zero, so any `after >= 1` is `Refuse`. An `unlimited`
-  limit with `fairUse` is always `Allowed`; the Spec sets no threshold and the
-  host applies its fair-use policy.
+  maximum, `Warn` when `fairUse` and otherwise `Refuse`. An `unlimited` limit
+  with `fairUse` is always `Allowed`; the Spec sets no threshold and the host
+  applies its fair-use policy.
+- `GrantsFor(plan)`: what the plan's tier grants, in the Spec's order.
+- `TierRank(tier)`: the rank, or zero for an undeclared tier.
 
 ## Entitlement mapping
 
@@ -210,13 +215,18 @@ plan's tier). The mapping to entitlements is:
 
 ## Projections
 
-- **PricingView:** plans in tier-rank order with prices by interval and a matrix
-  of features and limits with display names. Suitable for rendering.
-- **EntitlementMap:** tier to its grants, in rank order.
-- **Diff:** two Specs compared into added, removed and changed tiers, plans,
-  prices, features, limits and grants. A price increase, a lowered allowance, a
-  removed feature and a removed grant are marked as affecting existing
-  customers.
+- **PricingView:** plans ordered by tier rank, then monthly price (a plan
+  without one first), then the Spec's order; and a matrix of features and limits
+  whose cells are in the same order as the plans. It carries data, not display
+  text.
+- **EntitlementMap:** tiers in rank order, each with its grants and the
+  applications' names; a tier with no grants has an empty list.
+- **Diff(old, new):** a stable-ordered list of changes with a kind (`added`,
+  `removed`, `changed`), a subject and a detail. A change is marked
+  `affectsExisting` when it worsens the offer for accounts already on it: a
+  higher price, a lowered allowance (including from a number to a different
+  period), a feature removed or a ladder lowered, a removed or smaller grant, a
+  higher fee, or a removed plan or tier.
 
 ## Versioning
 

@@ -38,13 +38,13 @@ prices, coupons, regional pricing, and a command-line tool.
 
 **Theme:** A host can resolve a plan, check a feature or a limit, render a pricing page and see what changed between two offers.
 
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-008` Helpers: plan or default, feature and level checks, limit checks with allowed, warn and refuse
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-008` Helpers: plan or default, feature and level checks, limit checks with allowed, warn and refuse
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-006`
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-009` Pricing view for rendering, with golden files
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-009` Pricing view for rendering, with golden files
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-008`
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-010` Entitlement map from tier to grants
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-010` Entitlement map from tier to grants
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-008`
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-011` Diff between two specs, marking price increases and removed grants as affecting existing customers
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-011` Diff between two specs, marking price increases and removed grants as affecting existing customers
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-008`
 
 ## Phase 4 — Examples and release
