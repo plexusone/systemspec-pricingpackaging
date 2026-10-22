@@ -4,7 +4,7 @@
 **Repository:** `github.com/plexusone/systemspec-pricingpackaging`
 
 Status: **frozen for v0.1** by Phase 1. The normative description is
-[SPEC.md](../../../../SPEC.md); this document records the reasoning. The model was
+[SPEC.md](https://github.com/plexusone/systemspec-pricingpackaging/blob/main/SPEC.md); this document records the reasoning. The model was
 checked against three product shapes in [FIT.md](FIT.md), which changed it as
 listed under Changes from the fit check.
 
