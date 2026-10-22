@@ -51,9 +51,9 @@ prices, coupons, regional pricing, and a command-line tool.
 
 **Theme:** Two invented examples exercise the model, a billing library has built from it, and the package is released.
 
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-012` Examples: a subscription tool with levelled features and a marketplace with one-time sales
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-012` Examples: a subscription tool with levelled features and a marketplace with one-time sales
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-009`, `RMI-SYSTEMSPECPRICINGPACKAGING-010`
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-013` User guide: writing a spec, reading it, and the projections
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-013` User guide: writing a spec, reading it, and the projections
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-012`
 - [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-014` A billing library's trial: pricing view, limit check and provider plan built from an example
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-012`

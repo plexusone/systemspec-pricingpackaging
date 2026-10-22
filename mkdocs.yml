@@ -1,0 +1,11 @@
+site_name: systemspec-pricingpackaging
+site_description: A machine-readable description of a product's pricing and packaging
+repo_url: https://github.com/plexusone/systemspec-pricingpackaging
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Guides:
+      - Concepts: guides/index.md
+      - Writing a spec: guides/writing-a-spec.md
+      - Using a spec: guides/using-a-spec.md
