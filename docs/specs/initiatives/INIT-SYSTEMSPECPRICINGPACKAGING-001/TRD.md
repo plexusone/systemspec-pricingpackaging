@@ -3,9 +3,10 @@
 **Initiative:** `INIT-SYSTEMSPECPRICINGPACKAGING-001`
 **Repository:** `github.com/plexusone/systemspec-pricingpackaging`
 
-Status: **draft**. The model is proposed from the plans in use in three
-products and from the inventory of two billing integrations; it is frozen by
-the design items in Phase 1.
+Status: **frozen for v0.1** by Phase 1. The normative description is
+[SPEC.md](../../../../SPEC.md); this document records the reasoning. The model was
+checked against three product shapes in [FIT.md](FIT.md), which changed it as
+listed under Changes from the fit check.
 
 ## Principles
 
@@ -29,6 +30,7 @@ type Spec struct {
     App           string        // identifies the product; tags what a provider holds
     Currency      string        // ISO code, lowercase
     DefaultPlan   string        // a plan ID; the free plan
+    Applications  []Application // what grants may refer to
     Tiers         []Tier
     Features      []Feature
     Limits        []Limit
@@ -88,9 +90,9 @@ type Limit struct {
 
 type LimitValue struct {
     Limit     string
-    Unlimited bool     // explicit; Max is ignored when true
+    Unlimited bool     // explicit; Max must be zero when true
     Max       int      // zero means zero
-    FairUse   bool     // crossing warns and flags for review instead of refusing
+    FairUse   bool     // with Max: crossing warns instead of refusing; with Unlimited: advertised as unlimited, subject to the host's policy
 }
 ```
 
@@ -106,6 +108,7 @@ type Plan struct {
     Name      string
     Tier      string
     SelfServe bool         // can be bought through checkout; false: arranged
+    PlatformFeeBps *int    // optional override of the marketplace fee
     TrialDays int
     Prices    []Price      // empty for a free or arranged plan
     Features  []FeatureValue
@@ -174,7 +177,7 @@ Lint warnings (reviewable, not fatal):
 spec.PlanOrDefault(id string) Plan
 plan.Has(feature string) bool
 plan.AtLeast(feature, level string) bool
-plan.Check(limit string, current int) Decision // Allowed, Warn, Refuse
+plan.Check(limit string, after int) Decision // after: usage after the action; Allowed, Warn, Refuse
 spec.TierRank(tier string) int
 ```
 
@@ -208,12 +211,32 @@ optional fields are additions. A reader rejects a version it does not know.
 - Golden files for the projections and the diff.
 - The family's schema lint with zero findings.
 
+## Changes from the fit check
+
+[FIT.md](FIT.md) checked the draft against three product shapes. The model
+changed in these ways, all reflected in SPEC.md:
+
+- `Plan.PlatformFeeBps` overrides the marketplace fee per plan.
+- `Applications` are declared, and grants refer to them.
+- `FairUse` may accompany `Unlimited`.
+- Levels are only for monotonic ladders; a set of independent options is several
+  switches.
+- Seats live only in grants.
+- What a one-time purchase issues, who may pay and audience grouping are out of
+  scope for v0.1.
+
+## Tier vocabulary and the mapping to entitlements
+
+Tiers are declared per product with an order; there is no global vocabulary, and
+ranks of different products are not comparable. An account's entitlement carries
+the plan's tier ID unchanged. Access (applications, seats, validity) is the
+tier's grant and travels with the entitlement. Features and limits are read from
+the plan the host stores with the subscription, so two plans in one tier can
+differ in allowances while giving the same access. The rules are in SPEC.md under
+Entitlement mapping.
+
 ## Open questions
 
-- Whether `Application` in a grant is a free string or a reference to a
-  vocabulary the host declares.
 - Whether prices in several currencies belong in the first release.
-- Whether seats are a limit on a plan as well as a field of a grant, and which
-  of the two a host should enforce.
 - How a product with more than one deployable (several applications) shares
   tiers.

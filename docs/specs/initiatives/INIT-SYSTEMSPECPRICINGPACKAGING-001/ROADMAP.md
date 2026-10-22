@@ -15,10 +15,10 @@ prices, coupons, regional pricing, and a command-line tool.
 
 **Theme:** The model is checked against a subscription product and a marketplace product, the tier and entitlement vocabulary is fixed, and the TRD is frozen.
 
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-001` Check the proposed model against two product shapes (a subscription tool with levelled features, and a marketplace with one-time sales) and record what does not fit
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-002` Fix the tier vocabulary and the tier-to-entitlement map, including what is a grant and what is looked up in the spec at check time
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-001` Check the proposed model against two product shapes (a subscription tool with levelled features, and a marketplace with one-time sales) and record what does not fit
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-002` Fix the tier vocabulary and the tier-to-entitlement map, including what is a grant and what is looked up in the spec at check time
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-001`
-- [ ] `RMI-SYSTEMSPECPRICINGPACKAGING-003` Write SPEC.md, the normative description of the model, and freeze the TRD
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-003` Write SPEC.md, the normative description of the model, and freeze the TRD
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-002`
 
 ## Phase 2 — The model
