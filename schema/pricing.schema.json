@@ -1,0 +1,370 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/plexusone/systemspec-pricingpackaging/pricingspec/spec",
+  "$defs": {
+    "Application": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "Feature": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "levels": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Ordered levels of a ladder feature; absent for a switch"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "FeatureValue": {
+      "properties": {
+        "feature": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "level": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "feature"
+      ]
+    },
+    "Limit": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string",
+          "enum": [
+            "none",
+            "day",
+            "month"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "period"
+      ]
+    },
+    "LimitValue": {
+      "properties": {
+        "limit": {
+          "type": "string"
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unlimited": {
+          "type": "boolean"
+        },
+        "fairUse": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "limit"
+      ]
+    },
+    "Marketplace": {
+      "properties": {
+        "platformFeeBps": {
+          "type": "integer",
+          "maximum": 10000,
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "platformFeeBps"
+      ]
+    },
+    "Plan": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "tier": {
+          "type": "string"
+        },
+        "selfServe": {
+          "type": "boolean"
+        },
+        "trialDays": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "prices": {
+          "items": {
+            "$ref": "#/$defs/Price"
+          },
+          "type": "array"
+        },
+        "features": {
+          "items": {
+            "$ref": "#/$defs/FeatureValue"
+          },
+          "type": "array"
+        },
+        "limits": {
+          "items": {
+            "$ref": "#/$defs/LimitValue"
+          },
+          "type": "array"
+        },
+        "platformFeeBps": {
+          "type": "integer",
+          "maximum": 10000,
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "tier",
+        "selfServe"
+      ]
+    },
+    "Price": {
+      "properties": {
+        "interval": {
+          "type": "string",
+          "enum": [
+            "month",
+            "year"
+          ]
+        },
+        "amountCents": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "interval",
+        "amountCents"
+      ]
+    },
+    "Product": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "amountCents": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sellerSet": {
+          "type": "boolean"
+        },
+        "minAmountCents": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "Tier": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "rank"
+      ]
+    },
+    "TierGrant": {
+      "properties": {
+        "tier": {
+          "type": "string"
+        },
+        "application": {
+          "type": "string"
+        },
+        "seats": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unlimitedSeats": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "tier",
+        "application"
+      ]
+    }
+  },
+  "properties": {
+    "formatVersion": {
+      "type": "string",
+      "enum": [
+        "1"
+      ],
+      "description": "The document format version"
+    },
+    "app": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Identifies the product"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[a-z]{3}$",
+      "description": "Lowercase ISO 4217 currency code"
+    },
+    "defaultPlan": {
+      "type": "string",
+      "description": "Plan ID used for any unrecognised plan and when billing is not configured"
+    },
+    "applications": {
+      "items": {
+        "$ref": "#/$defs/Application"
+      },
+      "type": "array",
+      "description": "The applications a tier can grant"
+    },
+    "tiers": {
+      "items": {
+        "$ref": "#/$defs/Tier"
+      },
+      "type": "array",
+      "description": "The product's ladder"
+    },
+    "features": {
+      "items": {
+        "$ref": "#/$defs/Feature"
+      },
+      "type": "array",
+      "description": "What a plan can switch on or set to a level"
+    },
+    "limits": {
+      "items": {
+        "$ref": "#/$defs/Limit"
+      },
+      "type": "array",
+      "description": "What a plan can cap"
+    },
+    "plans": {
+      "items": {
+        "$ref": "#/$defs/Plan"
+      },
+      "type": "array",
+      "description": "What an account can be on"
+    },
+    "products": {
+      "items": {
+        "$ref": "#/$defs/Product"
+      },
+      "type": "array",
+      "description": "One-time purchases"
+    },
+    "marketplace": {
+      "$ref": "#/$defs/Marketplace",
+      "description": "The platform's share of sales by sellers"
+    },
+    "entitlements": {
+      "items": {
+        "$ref": "#/$defs/TierGrant"
+      },
+      "type": "array",
+      "description": "What each tier grants an account"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": [
+    "formatVersion",
+    "app",
+    "currency",
+    "defaultPlan",
+    "applications",
+    "tiers",
+    "plans",
+    "entitlements"
+  ]
+}
