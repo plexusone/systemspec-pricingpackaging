@@ -1,0 +1,152 @@
+{
+  "app": "example-suite",
+  "currency": "usd",
+  "plans": [
+    {
+      "id": "free",
+      "name": "Free",
+      "tier": "free",
+      "tierName": "Free",
+      "tierRank": 1,
+      "selfServe": true,
+      "free": true,
+      "default": true
+    },
+    {
+      "id": "pro",
+      "name": "Pro",
+      "tier": "pro",
+      "tierName": "Pro",
+      "tierRank": 2,
+      "selfServe": true,
+      "free": false,
+      "default": false,
+      "trialDays": 14,
+      "prices": [
+        {
+          "interval": "month",
+          "amountCents": 1900
+        },
+        {
+          "interval": "year",
+          "amountCents": 19000
+        }
+      ]
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "tier": "enterprise",
+      "tierName": "Enterprise",
+      "tierRank": 3,
+      "selfServe": false,
+      "free": false,
+      "default": false
+    }
+  ],
+  "features": [
+    {
+      "id": "refresh",
+      "name": "Refresh",
+      "levels": [
+        "daily",
+        "hourly"
+      ],
+      "cells": [
+        {
+          "plan": "free",
+          "included": true,
+          "level": "daily"
+        },
+        {
+          "plan": "pro",
+          "included": true,
+          "level": "hourly"
+        },
+        {
+          "plan": "enterprise",
+          "included": true,
+          "level": "hourly"
+        }
+      ]
+    },
+    {
+      "id": "custom_domain",
+      "name": "Custom domain",
+      "cells": [
+        {
+          "plan": "free",
+          "included": false
+        },
+        {
+          "plan": "pro",
+          "included": true
+        },
+        {
+          "plan": "enterprise",
+          "included": true
+        }
+      ]
+    }
+  ],
+  "limits": [
+    {
+      "id": "projects",
+      "name": "Projects",
+      "unit": "project",
+      "period": "none",
+      "cells": [
+        {
+          "plan": "free",
+          "max": 2
+        },
+        {
+          "plan": "pro",
+          "max": 20
+        },
+        {
+          "plan": "enterprise",
+          "max": 0,
+          "unlimited": true
+        }
+      ]
+    },
+    {
+      "id": "exports",
+      "name": "Exports per month",
+      "unit": "export",
+      "period": "month",
+      "cells": [
+        {
+          "plan": "free",
+          "max": 20,
+          "fairUse": true
+        },
+        {
+          "plan": "pro",
+          "max": 0,
+          "unlimited": true,
+          "fairUse": true
+        },
+        {
+          "plan": "enterprise",
+          "max": 0,
+          "unlimited": true
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "report_pack",
+      "name": "Report pack",
+      "amountCents": 999
+    },
+    {
+      "id": "template",
+      "name": "Template",
+      "sellerSet": true,
+      "minAmountCents": 100
+    }
+  ]
+}

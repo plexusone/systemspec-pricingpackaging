@@ -1,0 +1,217 @@
+{
+  "formatVersion": "1",
+  "app": "example-suite",
+  "currency": "usd",
+  "defaultPlan": "free",
+  "applications": [
+    {
+      "id": "reports",
+      "name": "Reports"
+    },
+    {
+      "id": "studio",
+      "name": "Studio"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "free",
+      "name": "Free",
+      "rank": 1
+    },
+    {
+      "id": "pro",
+      "name": "Pro",
+      "rank": 2
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "rank": 3
+    }
+  ],
+  "features": [
+    {
+      "id": "refresh",
+      "name": "Refresh",
+      "levels": [
+        "daily",
+        "hourly"
+      ]
+    },
+    {
+      "id": "custom_domain",
+      "name": "Custom domain"
+    }
+  ],
+  "limits": [
+    {
+      "id": "projects",
+      "name": "Projects",
+      "unit": "project",
+      "period": "none"
+    },
+    {
+      "id": "exports",
+      "name": "Exports per month",
+      "unit": "export",
+      "period": "month"
+    }
+  ],
+  "plans": [
+    {
+      "id": "free",
+      "name": "Free",
+      "tier": "free",
+      "selfServe": true,
+      "features": [
+        {
+          "feature": "refresh",
+          "level": "daily"
+        },
+        {
+          "feature": "custom_domain",
+          "enabled": true
+        }
+      ],
+      "limits": [
+        {
+          "limit": "projects",
+          "max": 2
+        },
+        {
+          "limit": "exports",
+          "max": 20,
+          "fairUse": true
+        }
+      ]
+    },
+    {
+      "id": "pro",
+      "name": "Pro",
+      "tier": "pro",
+      "selfServe": true,
+      "trialDays": 14,
+      "prices": [
+        {
+          "interval": "month",
+          "amountCents": 2400
+        },
+        {
+          "interval": "year",
+          "amountCents": 24000
+        }
+      ],
+      "features": [
+        {
+          "feature": "refresh",
+          "level": "hourly"
+        },
+        {
+          "feature": "custom_domain",
+          "enabled": true
+        }
+      ],
+      "limits": [
+        {
+          "limit": "projects",
+          "max": 10
+        },
+        {
+          "limit": "exports",
+          "unlimited": true,
+          "fairUse": true
+        }
+      ],
+      "platformFeeBps": 500
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "tier": "enterprise",
+      "selfServe": false,
+      "features": [
+        {
+          "feature": "refresh",
+          "level": "daily"
+        },
+        {
+          "feature": "custom_domain",
+          "enabled": true
+        }
+      ],
+      "limits": [
+        {
+          "limit": "projects",
+          "unlimited": true
+        },
+        {
+          "limit": "exports",
+          "unlimited": true
+        }
+      ]
+    },
+    {
+      "id": "team",
+      "name": "Team",
+      "tier": "pro",
+      "selfServe": true,
+      "prices": [
+        {
+          "interval": "month",
+          "amountCents": 4900
+        }
+      ],
+      "features": [
+        {
+          "feature": "refresh",
+          "level": "hourly"
+        }
+      ],
+      "limits": [
+        {
+          "limit": "projects",
+          "max": 50
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "report_pack",
+      "name": "Report pack",
+      "amountCents": 999
+    },
+    {
+      "id": "template",
+      "name": "Template",
+      "sellerSet": true,
+      "minAmountCents": 100
+    }
+  ],
+  "marketplace": {
+    "platformFeeBps": 1200
+  },
+  "entitlements": [
+    {
+      "tier": "free",
+      "application": "reports",
+      "seats": 1
+    },
+    {
+      "tier": "pro",
+      "application": "reports",
+      "seats": 10
+    },
+    {
+      "tier": "enterprise",
+      "application": "reports",
+      "unlimitedSeats": true
+    },
+    {
+      "tier": "enterprise",
+      "application": "studio",
+      "unlimitedSeats": true
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "kind": "changed",
+    "subject": "plan enterprise",
+    "detail": "feature refresh level hourly to daily",
+    "affectsExisting": true
+  },
+  {
+    "kind": "added",
+    "subject": "plan free",
+    "detail": "feature custom_domain"
+  },
+  {
+    "kind": "changed",
+    "subject": "plan pro",
+    "detail": "month price 1900 to 2400",
+    "affectsExisting": true
+  },
+  {
+    "kind": "changed",
+    "subject": "plan pro",
+    "detail": "year price 19000 to 24000",
+    "affectsExisting": true
+  },
+  {
+    "kind": "changed",
+    "subject": "plan pro",
+    "detail": "limit projects 20 to 10",
+    "affectsExisting": true
+  },
+  {
+    "kind": "added",
+    "subject": "plan team",
+    "detail": "tier pro"
+  },
+  {
+    "kind": "changed",
+    "subject": "marketplace",
+    "detail": "platform fee 1000 to 1200",
+    "affectsExisting": true
+  },
+  {
+    "kind": "changed",
+    "subject": "grant pro/reports",
+    "detail": "seats 5 seats to 10 seats"
+  },
+  {
+    "kind": "removed",
+    "subject": "grant pro/studio",
+    "detail": "5 seats",
+    "affectsExisting": true
+  }
+]

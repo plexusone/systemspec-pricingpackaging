@@ -1,0 +1,50 @@
+{
+  "tiers": [
+    {
+      "tier": "free",
+      "name": "Free",
+      "rank": 1,
+      "grants": [
+        {
+          "application": "reports",
+          "applicationName": "Reports",
+          "seats": 1
+        }
+      ]
+    },
+    {
+      "tier": "pro",
+      "name": "Pro",
+      "rank": 2,
+      "grants": [
+        {
+          "application": "reports",
+          "applicationName": "Reports",
+          "seats": 5
+        },
+        {
+          "application": "studio",
+          "applicationName": "Studio",
+          "seats": 5
+        }
+      ]
+    },
+    {
+      "tier": "enterprise",
+      "name": "Enterprise",
+      "rank": 3,
+      "grants": [
+        {
+          "application": "reports",
+          "applicationName": "Reports",
+          "unlimitedSeats": true
+        },
+        {
+          "application": "studio",
+          "applicationName": "Studio",
+          "unlimitedSeats": true
+        }
+      ]
+    }
+  ]
+}
