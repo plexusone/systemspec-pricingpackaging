@@ -10,6 +10,43 @@
   ],
   "releases": [
     {
+      "version": "v0.2.0",
+      "date": "2026-11-11",
+      "highlights": [
+        {
+          "description": "Internal plans: a plan for the operator's own accounts, such as staff and test accounts, that is assigned by hand and never sold or shown",
+          "commit": "4078b37"
+        }
+      ],
+      "added": [
+        {
+          "description": "`Plan.Internal` (`internal` in JSON); validation rule `E014` requires an internal plan to have no price, not be self-serve and not be the default plan",
+          "commit": "4078b37",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-016"
+          ]
+        }
+      ],
+      "changed": [
+        {
+          "description": "`PricingView` leaves out internal plans, and `Diff` reports a change of a plan's `internal` flag",
+          "commit": "4078b37",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-016"
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "description": "`SPEC.md` and the guides describe internal plans and `E014`",
+          "commit": "1d42d48",
+          "rmis": [
+            "RMI-SYSTEMSPECPRICINGPACKAGING-016"
+          ]
+        }
+      ]
+    },
+    {
       "version": "v0.1.0",
       "date": "2026-10-22",
       "highlights": [
