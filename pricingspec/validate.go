@@ -258,6 +258,9 @@ func (v *validator) plan(path string, p Plan) {
 	if p.SelfServe && len(p.Prices) == 0 && p.ID != v.s.DefaultPlan {
 		v.errf("E009", path, "self-serve plan %q has no price; only the default plan may be free", p.ID)
 	}
+	if p.Internal && (p.SelfServe || len(p.Prices) > 0 || p.ID == v.s.DefaultPlan) {
+		v.errf("E014", path+".internal", "internal plan %q must have no price, not be self-serve and not be the default plan", p.ID)
+	}
 	if p.PlatformFeeBps != nil && (*p.PlatformFeeBps < 0 || *p.PlatformFeeBps > maxBps) {
 		v.errf("E012", path+".platformFeeBps", "fee %d must be within 0 to %d", *p.PlatformFeeBps, maxBps)
 	}

@@ -147,6 +147,9 @@
         "selfServe": {
           "type": "boolean"
         },
+        "internal": {
+          "type": "boolean"
+        },
         "trialDays": {
           "type": "integer",
           "minimum": 0

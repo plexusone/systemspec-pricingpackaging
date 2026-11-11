@@ -94,6 +94,11 @@ type Plan struct {
 	Tier string `json:"tier"`
 	// SelfServe means the plan can be bought through checkout; false means arranged.
 	SelfServe bool `json:"selfServe"`
+	// Internal means the plan is for the operator's own accounts, such as
+	// staff and test accounts: assigned by hand, never sold or shown. It
+	// has no prices, is not self-serve and is not the default plan, and
+	// the pricing view leaves it out.
+	Internal bool `json:"internal,omitempty"`
 	// TrialDays is the length of a free trial. Only on a plan with prices.
 	TrialDays int `json:"trialDays,omitempty" jsonschema:"minimum=0"`
 	// Prices is empty for a free or arranged plan.

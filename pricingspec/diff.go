@@ -166,6 +166,9 @@ func (d *differ) plans() {
 		if o.SelfServe != n.SelfServe {
 			d.add(Changed, subj, fmt.Sprintf("selfServe %t to %t", o.SelfServe, n.SelfServe), false)
 		}
+		if o.Internal != n.Internal {
+			d.add(Changed, subj, fmt.Sprintf("internal %t to %t", o.Internal, n.Internal), false)
+		}
 		if o.TrialDays != n.TrialDays {
 			d.add(Changed, subj, fmt.Sprintf("trial %d to %d days", o.TrialDays, n.TrialDays), false)
 		}

@@ -65,7 +65,7 @@ type LimitCell struct {
 
 // PricingView arranges the Spec for display. Plans are ordered by tier rank,
 // then by monthly price (plans without one first), then by their order in the
-// Spec.
+// Spec. Internal plans are left out.
 func (s *Spec) PricingView() PricingView {
 	tierName := map[string]string{}
 	for _, t := range s.Tiers {
@@ -79,8 +79,12 @@ func (s *Spec) PricingView() PricingView {
 		}
 		return 0
 	}
-	plans := make([]Plan, len(s.Plans))
-	copy(plans, s.Plans)
+	plans := make([]Plan, 0, len(s.Plans))
+	for _, p := range s.Plans {
+		if !p.Internal {
+			plans = append(plans, p)
+		}
+	}
 	sort.SliceStable(plans, func(i, j int) bool {
 		ri, rj := s.TierRank(plans[i].Tier), s.TierRank(plans[j].Tier)
 		if ri != rj {

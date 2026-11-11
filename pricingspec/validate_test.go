@@ -115,6 +115,9 @@ func TestErrorRules(t *testing.T) {
 			s.Entitlements[0].Seats = one
 		}, "E013"},
 		{"E013 duplicate grant", func(s *pricingspec.Spec) { s.Entitlements = append(s.Entitlements, s.Entitlements[0]) }, "E013"},
+		{"E014 internal and self-serve", func(s *pricingspec.Spec) { s.Plans[2].Internal, s.Plans[2].SelfServe = true, true }, "E014"},
+		{"E014 internal and priced", func(s *pricingspec.Spec) { s.Plans[1].Internal, s.Plans[1].SelfServe = true, false }, "E014"},
+		{"E014 internal default", func(s *pricingspec.Spec) { s.Plans[0].Internal = true }, "E014"},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {

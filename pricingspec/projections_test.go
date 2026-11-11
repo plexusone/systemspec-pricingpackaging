@@ -5,6 +5,7 @@ import (
 	"flag"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"testing"
 
@@ -161,5 +162,38 @@ func TestDiffRemovalsAndLoweredLimits(t *testing.T) {
 		if !strings.Contains(all, want) {
 			t.Errorf("missing %q in\n%s", want, all)
 		}
+	}
+}
+
+// withInternal adds an internal plan, "staff", in the enterprise tier.
+func withInternal(t *testing.T) *pricingspec.Spec {
+	t.Helper()
+	s := valid(t)
+	staff := s.Plans[2]
+	staff.ID, staff.Name, staff.Internal = "staff", "Staff", true
+	s.Plans = append(s.Plans, staff)
+	if issues := s.Validate(); len(issues) > 0 {
+		t.Fatalf("an internal plan should be valid: %v", issues)
+	}
+	return s
+}
+
+func TestPricingViewLeavesOutInternalPlans(t *testing.T) {
+	s := withInternal(t)
+	v := s.PricingView()
+	if !reflect.DeepEqual(v, valid(t).PricingView()) {
+		t.Fatal("an internal plan must not change the pricing view")
+	}
+	if _, ok := s.Plan("staff"); !ok || !s.Has("staff", "custom_domain") {
+		t.Fatal("an internal plan still resolves for its accounts")
+	}
+}
+
+func TestDiffReportsInternal(t *testing.T) {
+	o, n := withInternal(t), withInternal(t)
+	n.Plans[len(n.Plans)-1].Internal = false
+	got := pricingspec.Diff(o, n)
+	if len(got) != 1 || got[0].Subject != "plan staff" || got[0].Detail != "internal true to false" {
+		t.Fatalf("diff: %v", got)
 	}
 }
