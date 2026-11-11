@@ -635,6 +635,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../releases/v0.2.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v0.2.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../releases/v0.1.0/" class="md-nav__link">
         
   
@@ -842,7 +870,9 @@ Do not copy features or limits into it.</p>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">row</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">view</span><span class="p">.</span><span class="nx">Limits</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* the same, with Max, Unlimited, FairUse */</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>The view is data, not text: you choose the words. Plans come in tier order, and
-the cells of every row are in the same order as the columns.</p>
+the cells of every row are in the same order as the columns. Internal plans are
+not in the view; they still resolve with <code>Plan</code>, <code>Has</code> and <code>Check</code> for the
+accounts on them.</p>
 <h2 id="what-changed">What changed<a class="headerlink" href="#what-changed" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">pricingspec</span><span class="p">.</span><span class="nx">Diff</span><span class="p">(</span><span class="nx">oldSpec</span><span class="p">,</span><span class="w"> </span><span class="nx">newSpec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span><span class="w"> </span><span class="c1">// changed plan plus: month price 1200 to 1500 [affects existing customers]</span>
