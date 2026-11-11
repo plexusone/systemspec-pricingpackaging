@@ -6,7 +6,7 @@ from it.
 | Term | Meaning |
 |---|---|
 | **Tier** | A position on the product's ladder, with a rank. "Free", "Plus", "Business". An account's entitlement carries its tier. |
-| **Plan** | What an account can be on. A plan belongs to one tier, may have monthly and yearly prices, and sets features and limits. Free and arranged plans have no price. |
+| **Plan** | What an account can be on. A plan belongs to one tier, may have monthly and yearly prices, and sets features and limits. Free and arranged plans have no price; an internal plan, for your own accounts, is never sold or shown. |
 | **Feature** | Something a plan switches on, or sets to a level. A *switch* is on or off; a *ladder* has ordered levels such as `community`, `email`, `priority`. |
 | **Limit** | Something a plan caps: a count, optionally per day or month. It can be unlimited, or fair use. |
 | **Product** | A one-time purchase: a fixed price, or a price the seller sets with a floor. |
@@ -35,7 +35,7 @@ in one tier can differ in allowances while giving the same access.
 - "Unlimited" is its own field and never a zero or a missing value.
 - The default plan must be free, and its tier must grant something.
 - A Spec that breaks a rule is rejected with every error at once, each with a
-  stable code (E001 to E013). Warnings (W001 to W006) are for review.
+  stable code (E001 to E014). Warnings (W001 to W006) are for review.
 
 ## What it is not
 

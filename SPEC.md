@@ -90,6 +90,7 @@ allowance and the check.
 | `id`, `name` | string | |
 | `tier` | string | The plan's tier. Exactly one. |
 | `selfServe` | bool | The plan can be bought through checkout. False means arranged. |
+| `internal` | bool | The plan is for the operator's own accounts, such as staff and test accounts: assigned by hand, never sold or shown. No prices, not self-serve, not the default. |
 | `trialDays` | int | Zero or more. Only on a plan with prices. |
 | `prices` | []Price | Empty for a free or arranged plan. |
 | `features` | []FeatureValue | |
@@ -163,6 +164,7 @@ A Spec that breaks an error rule is rejected. Each rule has a stable code.
 | E011 | A product is fixed (positive amount) or seller-set (zero amount, positive minimum), not both. |
 | E012 | Marketplace and plan fees are within 0 to 10000. |
 | E013 | Every grant names a declared tier and application; seats are positive or unlimited, not both; at most one grant per tier and application. |
+| E014 | An internal plan has no price, is not self-serve and is not the default plan. |
 
 Lint warnings are reviewable and do not reject:
 
@@ -217,8 +219,8 @@ plan's tier). The mapping to entitlements is:
 
 - **PricingView:** plans ordered by tier rank, then monthly price (a plan
   without one first), then the Spec's order; and a matrix of features and limits
-  whose cells are in the same order as the plans. It carries data, not display
-  text.
+  whose cells are in the same order as the plans. Internal plans are left out.
+  It carries data, not display text.
 - **EntitlementMap:** tiers in rank order, each with its grants and the
   applications' names; a tier with no grants has an empty list.
 - **Diff(old, new):** a stable-ordered list of changes with a kind (`added`,

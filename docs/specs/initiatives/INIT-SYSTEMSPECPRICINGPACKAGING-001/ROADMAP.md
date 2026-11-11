@@ -60,3 +60,10 @@ prices, coupons, regional pricing, and a command-line tool.
 - [x] `RMI-SYSTEMSPECPRICINGPACKAGING-015` Review; fix findings; record known limitations; v0.1.0 release with changelog, notes and tag after CI
   - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-013`
   - Note: released before the production trial (`RMI-SYSTEMSPECPRICINGPACKAGING-014`), which continues in the billing library that consumes it; the release notes say so
+
+## Phase 5 — Internal plans
+
+**Theme:** An operator can put its own accounts on a plan that is never sold or shown.
+
+- [x] `RMI-SYSTEMSPECPRICINGPACKAGING-016` Internal plans: an `internal` flag, validation that such a plan has no price, is not self-serve and is not the default, and a pricing view that leaves it out
+  - Depends on: `RMI-SYSTEMSPECPRICINGPACKAGING-009`

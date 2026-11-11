@@ -54,7 +54,9 @@ for _, row := range view.Limits { /* the same, with Max, Unlimited, FairUse */ }
 ```
 
 The view is data, not text: you choose the words. Plans come in tier order, and
-the cells of every row are in the same order as the columns.
+the cells of every row are in the same order as the columns. Internal plans are
+not in the view; they still resolve with `Plan`, `Has` and `Check` for the
+accounts on them.
 
 ## What changed
 

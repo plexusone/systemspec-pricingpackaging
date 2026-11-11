@@ -64,6 +64,10 @@ fair-use allowances, and a marketplace with seller-set prices and per-plan fees.
   account that is not billed can still open something.
 - **Every other self-serve plan has a price.** An arranged plan (`selfServe`
   false) may have none.
+- **An internal plan is for your own accounts.** Mark a plan `internal` for
+  staff and test accounts that you put on it by hand: it has no price, is not
+  self-serve and is not the default, and the pricing view leaves it out. It can
+  share a tier with a sold plan, or have a tier of its own with its own grants.
 - **Seats live only in grants.** To limit members, change the tier's grant.
 - **A marketplace fee is in basis points** (1000 is 10%), and a plan's
   `platformFeeBps` overrides it for sellers on that plan.

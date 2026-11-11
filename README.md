@@ -34,7 +34,7 @@ The Spec is the source of truth. A pricing page, a limit check, a payment
 provider's prices and an account's entitlements are computed from it.
 
 - [SPEC.md](SPEC.md): the normative description of the model.
-- `pricingspec`: the Go types, a loader, validation (`E001` to `E013`) and lint
+- `pricingspec`: the Go types, a loader, validation (`E001` to `E014`) and lint
   (`W001` to `W006`).
 - `schema`: the JSON Schema generated from the types.
 
